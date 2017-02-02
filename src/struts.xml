@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  指定Struts 2配置文件的DTD信息  -->
+<!DOCTYPE struts PUBLIC
+      "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+      "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="Struts2" extends="struts-default">
+      <action name="forwardAction" class="action.ForwardAction">
+        <result name="success">/WEB-INF/${forward}.jsp</result>
+      </action>
+       
+    <!-- 使用通配符配置了Action外，method属性是动态指定的 -->
+        <action name="*Action" class="action.LoginRegisterActiom" method="{1}">
+           <!-- 定义了两个Result -->
+           <result name="success">/success.jsp</result>
+           <result name="error">/error.jsp</result>
+        </action>
+         <action name="*">
+           <result name="success">/WEB-INF/{1}.jsp</result>
+        </action>
+    </package>
+</struts>
